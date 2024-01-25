@@ -1,9 +1,10 @@
-"use Client";
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { axios } from "axios";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../page.module.css";
 
 const SignUpPage = () => {
   const [user, setUser] = useState({
@@ -16,14 +17,20 @@ const SignUpPage = () => {
 
   async function onSignup() {}
 
-  function handleChange() {}
+  function handleChange(e) {
+    const { value, name } = e.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  }
 
   return (
-    <div>
-      <h1 className="text-center">Signup</h1>
+    <div className="container signup-form">
+      <h1 className="text-center mt-5">Signup</h1>
       <hr />
-      <form>
-        <label htmlFor="firstName" id="firstName">
+      <form className="">
+        <label htmlFor="firstName" id="firstName" className="mb-2">
           First Name
         </label>
         <input
@@ -34,8 +41,8 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.firstName}
         />
-        <label htmlFor="lastName" id="lastName">
-          First Name
+        <label htmlFor="lastName" id="lastName" className="mb-2 mt-2">
+          Last Name
         </label>
         <input
           type="text"
@@ -45,8 +52,8 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.lastName}
         />
-        <label htmlFor="userName" id="userName">
-          First Name
+        <label htmlFor="userName" id="userName" className="mb-2 mt-2">
+          Username
         </label>
         <input
           type="text"
@@ -56,7 +63,7 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.username}
         />
-        <label htmlFor="emial" id="email">
+        <label htmlFor="emial" id="email" className="mb-2 mt-2">
           Email
         </label>
         <input
@@ -67,7 +74,11 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.email}
         />
-        <label htmlFor="password" id="password">
+        <label
+          htmlFor="password"
+          id="password"
+          className="mb-2 mt-2 text-center"
+        >
           Password
         </label>
         <input
@@ -78,6 +89,15 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.password}
         />
+        <button
+          className="btn btn-success mt-3 mb-2 form-control"
+          onClick={onSignup}
+        >
+          Signup here
+        </button>
+        <Link href="/login" className="text-center">
+          Visit login page
+        </Link>
       </form>
     </div>
   );
