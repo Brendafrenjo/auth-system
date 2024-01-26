@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  forgotPasswordToken: String,
+  forgotPasswordTokenExpiry: Date,
+  VerifyToken: String,
+  VerifyTokenExpiry: Date,
 });
 
 const User = mongoose.models.users || mongoose.model("User", userSchema);
