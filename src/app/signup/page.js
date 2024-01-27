@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,8 +14,25 @@ const SignUpPage = () => {
     password: "",
     username: "",
   });
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const router = useRouter();
 
   async function onSignup() {}
+
+  useEffect(() => {
+    if (
+      user.email.length > 0 &&
+      user.password.length > 0 &&
+      user.username.length > 0
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+    return () => {
+      second;
+    };
+  }, [user]);
 
   function handleChange(e) {
     const { value, name } = e.target;
@@ -93,7 +110,7 @@ const SignUpPage = () => {
           className="btn btn-success mt-3 mb-2 form-control"
           onClick={onSignup}
         >
-          Signup here
+          {buttonDisabled ? "No Signup" : "Signup"}
         </button>
         <Link href="/login" className="text-center">
           Visit login page

@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       citypassword: hashPassword,
     });
 
-    const eventSaved = newEvent.save();
+    const eventSaved = await newEvent.save();
 
     return NextResponse.json({
       message: "Event created succesfully",
