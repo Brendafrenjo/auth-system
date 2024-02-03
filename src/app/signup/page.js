@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../page.module.css";
+import "../globals.css";
 
 const SignUpPage = () => {
   const [user, setUser] = useState({
@@ -47,7 +48,7 @@ const SignUpPage = () => {
       <h1 className="text-center mt-5">Signup</h1>
       <hr />
       <form className="">
-        <label htmlFor="firstName" id="firstName" className="mb-2">
+        <label htmlFor="firstName" className="mb-2">
           First Name
         </label>
         <input
@@ -58,7 +59,7 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.firstName}
         />
-        <label htmlFor="lastName" id="lastName" className="mb-2 mt-2">
+        <label htmlFor="lastName" className="mb-2 mt-2">
           Last Name
         </label>
         <input
@@ -69,7 +70,7 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.lastName}
         />
-        <label htmlFor="userName" id="userName" className="mb-2 mt-2">
+        <label htmlFor="userName" className="mb-2 mt-2">
           Username
         </label>
         <input
@@ -80,7 +81,7 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.username}
         />
-        <label htmlFor="emial" id="email" className="mb-2 mt-2">
+        <label htmlFor="emial" className="mb-2 mt-2">
           Email
         </label>
         <input
