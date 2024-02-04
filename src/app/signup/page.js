@@ -9,16 +9,18 @@ import "../globals.css";
 
 const SignUpPage = () => {
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
     username: "",
   });
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  async function onSignup() {}
+  async function onSignup() {
+    try {
+    } catch (error) {}
+  }
 
   useEffect(() => {
     if (
@@ -30,9 +32,10 @@ const SignUpPage = () => {
     } else {
       setButtonDisabled(true);
     }
-    return () => {
-      second;
-    };
+  }, [user]);
+
+  useEffect(() => {
+    setButtonDisabled(!(user.email && user.password && user.username));
   }, [user]);
 
   function handleChange(e) {
@@ -45,31 +48,9 @@ const SignUpPage = () => {
 
   return (
     <div className="container signup-form">
-      <h1 className="text-center mt-5">Signup</h1>
+      <h1 className="text-center mt-5">{loading ? "Signup" : "Processing"}</h1>
       <hr />
       <form className="">
-        <label htmlFor="firstName" className="mb-2">
-          First Name
-        </label>
-        <input
-          type="text"
-          id="firstName"
-          className="firstName form-control"
-          placeholder="First Name"
-          onChange={handleChange}
-          value={user.firstName}
-        />
-        <label htmlFor="lastName" className="mb-2 mt-2">
-          Last Name
-        </label>
-        <input
-          type="text"
-          id="lastName"
-          className="lastName form-control"
-          placeholder="Last Name"
-          onChange={handleChange}
-          value={user.lastName}
-        />
         <label htmlFor="userName" className="mb-2 mt-2">
           Username
         </label>
