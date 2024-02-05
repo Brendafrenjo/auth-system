@@ -19,7 +19,11 @@ const SignUpPage = () => {
 
   async function onSignup() {
     try {
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -34,10 +38,6 @@ const SignUpPage = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    setButtonDisabled(!(user.email && user.password && user.username));
-  }, [user]);
-
   function handleChange(e) {
     const { value, name } = e.target;
     setUser((prevUser) => ({
@@ -48,7 +48,7 @@ const SignUpPage = () => {
 
   return (
     <div className="container signup-form">
-      <h1 className="text-center mt-5">{loading ? "Signup" : "Processing"}</h1>
+      <h1 className="text-center mt-5">{loading ? "Processing" : "Signup"}</h1>
       <hr />
       <form className="">
         <label htmlFor="userName" className="mb-2 mt-2">
