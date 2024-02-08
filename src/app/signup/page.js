@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import toast, { Toaster } from "react-hot-toast";
 import "../page.module.css";
 import "../globals.css";
 
@@ -19,7 +20,12 @@ const SignUpPage = () => {
 
   async function onSignup() {
     try {
+      setLoading(true);
+      const res = await axios.post("/api/users/signup", user);
+      console.log("Signup success", response.data.message);
+      router.push("/login");
     } catch (error) {
+      console.log("SignUp failed", error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -27,11 +33,7 @@ const SignUpPage = () => {
   }
 
   useEffect(() => {
-    if (
-      user.email.length > 0 &&
-      user.password.length > 0 &&
-      user.username.length > 0
-    ) {
+    if (user.email && user.password && user.username) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -48,6 +50,7 @@ const SignUpPage = () => {
 
   return (
     <div className="container signup-form">
+      <Toaster />
       <h1 className="text-center mt-5">{loading ? "Processing" : "Signup"}</h1>
       <hr />
       <form className="">
