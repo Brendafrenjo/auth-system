@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import { connect } from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 import { NextResponse } from "next";
@@ -11,7 +11,23 @@ export async function POST(request) {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
 
-    console.log(reqBody);
+    //additional validation
+    if (!username || !email || !password) {
+      return NextResponse.json(
+        { error: "Please fill out all relevant fields" },
+        { status: 400 }
+      );
+    }
+
+    //Validtaing email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex) {
+      return NextResponse.json(
+        { error: "Please provide a valid email address" },
+        { status: 400 }
+      );
+    }
+
     //check if user alreday exists
     const user = await User.findOne({ email });
 
@@ -34,7 +50,6 @@ export async function POST(request) {
     });
 
     const savedUser = await newUser.save();
-    console.log(savedUser);
 
     return NextResponse.json({
       message: "User created successfully",

@@ -21,7 +21,7 @@ const SignUpPage = () => {
   async function onSignup() {
     try {
       setLoading(true);
-      const res = await axios.post("/api/users/signup", user);
+      const response = await axios.post("/api/users/signup", user);
       console.log("Signup success", response.data.message);
       router.push("/login");
     } catch (error) {
@@ -54,7 +54,7 @@ const SignUpPage = () => {
       <h1 className="text-center mt-5">{loading ? "Processing" : "Signup"}</h1>
       <hr />
       <form className="">
-        <label htmlFor="userName" className="mb-2 mt-2">
+        <label for="userName" className="mb-2 mt-2">
           Username
         </label>
         <input
@@ -65,7 +65,7 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.username}
         />
-        <label htmlFor="emial" className="mb-2 mt-2">
+        <label for="email" className="mb-2 mt-2">
           Email
         </label>
         <input
@@ -76,11 +76,7 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.email}
         />
-        <label
-          htmlFor="password"
-          id="password"
-          className="mb-2 mt-2 text-center"
-        >
+        <label for="password" className="mb-2 mt-2 text-center">
           Password
         </label>
         <input
