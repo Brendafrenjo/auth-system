@@ -21,6 +21,7 @@ const SignUpPage = () => {
   async function onSignup() {
     try {
       setLoading(true);
+      console.log("User data:", user);
       const response = await axios.post("/api/users/signup", user);
       console.log("Signup success", response.data.message);
       router.push("/login");
@@ -54,35 +55,29 @@ const SignUpPage = () => {
       <h1 className="text-center mt-5">{loading ? "Processing" : "Signup"}</h1>
       <hr />
       <form className="">
-        <label for="userName" className="mb-2 mt-2">
-          Username
-        </label>
+        <label for="userName">Username</label>
         <input
           type="text"
           id="username"
-          className="username form-control"
+          className="username form-control mb-2 mt-2"
           placeholder="username"
           onChange={handleChange}
           value={user.username}
         />
-        <label for="email" className="mb-2 mt-2">
-          Email
-        </label>
+        <label for="email">Email</label>
         <input
           type="email"
           id="email"
-          className="email form-control"
+          className="email form-control mb-2 mt-2"
           placeholder="Email"
           onChange={handleChange}
           value={user.email}
         />
-        <label for="password" className="mb-2 mt-2 text-center">
-          Password
-        </label>
+        <label for="password">Password</label>
         <input
           type="password"
           id="password"
-          className="password form-control"
+          className="password form-control mb-2 mt-2"
           placeholder="Password"
           onChange={handleChange}
           value={user.password}
@@ -94,7 +89,7 @@ const SignUpPage = () => {
           {buttonDisabled ? "No Signup" : "Signup"}
         </button>
         <Link href="/login" className="text-center">
-          Visit login page
+          Go to login page
         </Link>
       </form>
     </div>

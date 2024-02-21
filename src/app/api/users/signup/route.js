@@ -19,15 +19,6 @@ export async function POST(request) {
       );
     }
 
-    //Validtaing email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex) {
-      return NextResponse.json(
-        { error: "Please provide a valid email address" },
-        { status: 400 }
-      );
-    }
-
     //check if user alreday exists
     const user = await User.findOne({ email });
 
@@ -57,6 +48,7 @@ export async function POST(request) {
       savedUser,
     });
   } catch (error) {
+    console.error("Error parsing requst body:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

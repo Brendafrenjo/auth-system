@@ -11,6 +11,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide an email"],
     unique: true,
+    trim: true,
+    lowercase: true,
+    validate: {
+      validator: (value) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      },
+      message: "Please provide a valid email address",
+    },
   },
   password: {
     type: String,
@@ -29,6 +37,10 @@ const userSchema = new mongoose.Schema({
   verifyToken: String,
   verifyTokenExpiry: Date,
 });
+
+// Indexes for email and username fields
+userSchema.index({ email: 1 }, { unique: true });
+userSchema.index({ username: 1 }, { unique: true });
 
 const User = mongoose.models.users || mongoose.model("User", userSchema);
 
