@@ -1,12 +1,19 @@
-"use client";
+"use Client";
 import Link from "next/link";
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
+=======
+import React from "react";
+>>>>>>> parent of 9298717 (Update page.js)
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import { axios } from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+<<<<<<< HEAD
 import toast, { Toaster } from "react-hot-toast";
 import "../page.module.css";
 import "../globals.css";
+=======
+>>>>>>> parent of 9298717 (Update page.js)
 
 const SignUpPage = () => {
   const [user, setUser] = useState({
@@ -41,21 +48,47 @@ const SignUpPage = () => {
     }
   }, [user]);
 
-  function handleChange(e) {
-    const { value, name } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
-    }));
-  }
+  function handleChange() {}
 
   return (
+<<<<<<< HEAD
     <div className="container signup-form">
       <Toaster />
       <h1 className="text-center mt-5">{loading ? "Processing" : "Signup"}</h1>
       <hr />
       <form className="">
         <label for="userName">Username</label>
+=======
+    <div>
+      <h1 className="text-center">Signup</h1>
+      <hr />
+      <form>
+        <label htmlFor="firstName" id="firstName">
+          First Name
+        </label>
+        <input
+          type="text"
+          id="firstName"
+          className="firstName form-control"
+          placeholder="First Name"
+          onChange={handleChange}
+          value={user.firstName}
+        />
+        <label htmlFor="lastName" id="lastName">
+          First Name
+        </label>
+        <input
+          type="text"
+          id="lastName"
+          className="lastName form-control"
+          placeholder="Last Name"
+          onChange={handleChange}
+          value={user.lastName}
+        />
+        <label htmlFor="userName" id="userName">
+          First Name
+        </label>
+>>>>>>> parent of 9298717 (Update page.js)
         <input
           type="text"
           id="username"
@@ -64,7 +97,13 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.username}
         />
+<<<<<<< HEAD
         <label for="email">Email</label>
+=======
+        <label htmlFor="emial" id="email">
+          Email
+        </label>
+>>>>>>> parent of 9298717 (Update page.js)
         <input
           type="email"
           id="email"
@@ -73,7 +112,13 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.email}
         />
+<<<<<<< HEAD
         <label for="password">Password</label>
+=======
+        <label htmlFor="password" id="password">
+          Password
+        </label>
+>>>>>>> parent of 9298717 (Update page.js)
         <input
           type="password"
           id="password"
@@ -82,6 +127,7 @@ const SignUpPage = () => {
           onChange={handleChange}
           value={user.password}
         />
+<<<<<<< HEAD
         <button
           className="btn btn-success mt-3 mb-2 form-control"
           onClick={onSignup}
@@ -91,6 +137,8 @@ const SignUpPage = () => {
         <Link href="/login" className="text-center">
           Go to login page
         </Link>
+=======
+>>>>>>> parent of 9298717 (Update page.js)
       </form>
     </div>
   );
